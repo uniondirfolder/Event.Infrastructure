@@ -1,7 +1,3 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Target Name="InitializeSourceControlInformation" BeforeTargets="AddSourceRevisionToInformationalVersion">
-    <Exec Command="git describe --long --always --abbrev=12" ConsoleToMSBuild="True" IgnoreExitCode="False">
-      <Output PropertyName="SourceRevisionId" TaskParameter="ConsoleOutput"/>
-    </Exec>
-  </Target>
+
 </Project>
