@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <Import Project="$(MSBuildThisFileDirectory)Global.props" />
+  <PropertyGroup>
+    <NoWarn Condition=" '$(Configuration)' != 'Release' ">$(NoWarn);1591</NoWarn>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+    <PackageLicenseExpresion>MIT</PackageLicenseExpresion>
+    <SourceControlInformationFeatureSupported>true</SourceControlInformationFeatureSupported>
+    <IsPackable>true</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup Condition=" '$(Configuration)' == 'Release' ">
+    <PackageReference Include="Microsoft.SourceLink.GitLab" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
+</Project>

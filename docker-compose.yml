@@ -1,0 +1,45 @@
+version: "3.4"
+services:
+  seq:
+    image: datalust/seq:latest
+    container_name: seq
+    ports:
+      - '5341:80'
+    environment:
+      - ACCEPT_EULA=Y
+    networks:
+      - gateway-network
+  mariadb:
+    image: mariadb:10.4
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_ROOT_PASSWORD: 'Qwerty123'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'Zxcvbn456'
+    expose:
+      - '3306'
+    ports:
+      - '3306:3306'
+    volumes:
+      - mariadb-data:/var/lib/mysql
+    networks:
+      - gateway-network
+  redis:
+    image: redis:alpine
+    restart: unless-stopped
+    command: [ 'redis-server', '--appendonly', 'yes' ]
+    expose:
+      - '6379'
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis-data:/data
+    networks:
+      - gateway-network
+networks:
+  gateway-network:
+    name: gateway-network
+volumes:
+  mariadb-data:
+  redis-data:
